@@ -12,7 +12,7 @@ intents.members = True
 intents.guilds = True
 intents.messages = True
 
-bot = commands.Bot(command_prefix = ".", intents = intents)
+bot = commands.Bot(command_prefix = '.', intents = intents)
 
 #startup message in console
 @bot.event
@@ -31,9 +31,9 @@ async def on_member_join(member):
     await welcome.send(response)
 
 #git gud command    
-@bot.command(name="gg", help= "Tell someone to git gud")
+@bot.command(name='gg', help= 'Tell someone to git gud')
 async def test(ctx, name):
-    await ctx.send("git gud {}".format(name))
+    await ctx.send(f'git gud {name}')
 
 #memes command    
 @bot.command(name='memes', help='Get popular memes')
