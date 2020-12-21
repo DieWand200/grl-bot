@@ -57,6 +57,6 @@ async def insult(ctx, name):
     await ctx.send(f'{name} you {random.choice(insults)}')
 
 
-f = open('grl-bot/token.txt', 'r')
+f = open('token.txt', 'r')
 token = f.read()
 bot.run(token)
