@@ -49,5 +49,7 @@ async def memes(ctx, number):
             await ctx.send('{}'.format(data['url']))
             sleep(1)
     
-    
-bot.run('Insert Token Here')
+
+f = open('token.txt', 'r')
+token = f.read()
+bot.run(token)
