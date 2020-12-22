@@ -71,17 +71,17 @@ async def insultvc(context, name):
         insults = open('insults.txt').read().splitlines()
         audio = gTTS(text=f'{name.replace("@", "")} you {random.choice(insults)}', lang='en', slow=False)
         filename = 'insult-' + str(time.time()) + '.mp3'
-        audio.save(filename)
+        audio.save(/grl-bot/filename)
 
         # connect to vc und play audio
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(filename))
+        vc.play(discord.FFmpegPCMAudio(/grl-bot/filename))
         # Sleep while audio is playing.
         while vc.is_playing():
             sleep(.5)
         # disconnect from vc and delete mp3 file
         await vc.disconnect()
-        os.remove(filename)
+        os.remove(/grl-bot/filename)
     else:
         await context.send(f'Please connect to a voice channel first. You {insult}')
 
