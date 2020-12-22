@@ -98,7 +98,7 @@ async def insultvc(context, name):
         # connect to vc und play audio
         vc = context.message.author.voice.channel
         currentvc = await vc.connect()
-        currentvc.play(discord.FFmpegPCMAudio(filename, options="-loglevel panic"))
+        currentvc.play(discord.FFmpegPCMAudio(filename, executable ='/usr/share/ffmpeg' , options="-loglevel panic"))
         while currentvc.is_playing():
             await asyncio.sleep(1)
         # disconnect after the player has finished
