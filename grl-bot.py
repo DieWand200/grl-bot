@@ -75,13 +75,13 @@ async def insultvc(context, name):
 
         # connect to vc und play audio
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio('/root/' + filename))
+        vc.play(discord.FFmpegPCMAudio(filename))
         # Sleep while audio is playing.
         while vc.is_playing():
             sleep(.5)
         # disconnect from vc and delete mp3 file
         await vc.disconnect()
-        os.remove('/root/' + filename)
+        os.remove(filename)
     else:
         await context.send(f'Please connect to a voice channel first. You {insult}')
 
