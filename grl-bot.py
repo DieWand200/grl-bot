@@ -65,7 +65,7 @@ async def insult(ctx, name):
 # noinspection SpellCheckingInspection
 @bot.command(name='insultvc', help='Insult a grl member in voice chat')
 async def insultvc(context, name):
-    voice_channel = context.author.channel
+    voice_channel = context.author.voice.channel
     if voice_channel is not None:
         # text to speech and save as mp3
         insults = open('insults.txt').read().splitlines()
