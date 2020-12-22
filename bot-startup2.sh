@@ -1,0 +1,6 @@
+sudo rm -rf "/root/grl-bot-temp"
+sudo rm -rf "/root/grl-bot-backup"
+sudo git clone https://github.com/DieWand/grl-bot.git "/root/grl-bot-temp"
+sudo mv "/root/grl-bot" "/root/grl-bot-backup"
+sudo mv "/root/grl-bot-temp" "/root/grl-bot"
+sudo python3 "grl-bot.py"
