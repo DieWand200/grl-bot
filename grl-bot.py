@@ -98,7 +98,7 @@ async def insultvc(context, name, lang='en'):
 # compliment a grl member
 @bot.command(name='compliment', help='Compliment a grl member. Example: ".compliment sau".')
 async def insult(ctx, name):
-    await ctx.send(f'{name} you {random.choice(insults)}')
+    await ctx.send(f'{name} you {random.choice(compliments)}')
 
 
 # compliments a grl member in voice chat
