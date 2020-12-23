@@ -92,7 +92,7 @@ async def insultvc(context, name, lang='en'):
     if len(name) > 25:
         context.send(f'Please enter a shorter text you {random.choice(insults)}.')
     else:
-        texttospeech(context, f'{name.replace("@", "")} you are a {random.choice(insults)}', lang)
+        await texttospeech(context, f'{name.replace("@", "")} you are a {random.choice(insults)}', lang)
 
 
 # compliment a grl member
@@ -113,11 +113,11 @@ async def complimentvc(context, name, lang='en'):
     if len(name) > 25:
         context.send(f'Please enter a shorter text.')
     else:
-        texttospeech(context, f'{name.replace("@", "")} you are so {random.choice(compliments)}', lang)
+        await texttospeech(context, f'{name.replace("@", "")} you are so {random.choice(compliments)}', lang)
 
 
 # bot joins current voice channel, plays the text via text to speech and leaves again
-def texttospeech(context, text, lang='en'):
+async def texttospeech(context, text, lang='en'):
     voice_channel = context.message.author.voice.channel
     if voice_channel is not None:
         # text to speech and save as mp3
