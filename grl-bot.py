@@ -12,6 +12,7 @@ from gtts import gTTS
 
 # weird new Intents
 # not sure if they are all necessary
+#probably should only add the ones that we need
 intents = discord.Intents().all()
 
 bot = commands.Bot(command_prefix='.', intents=intents)
@@ -77,7 +78,7 @@ async def memes(ctx, number):
 @bot.command(name='insult', help='Insult a grl member. Example: ".insult hammie".')
 async def insult(ctx, name):
     await ctx.send(f'{name} you {random.choice(insults)}')
-
+    
 
 # insults a grl member in voice chat
 @bot.command(name='insultvc', help='Insult a grl member in voice chat. Example: ".insultvc nani" or ".insultvc nani" it'
@@ -124,10 +125,10 @@ def texttospeech(context, text, lang='en'):
         audio = gTTS(text=text, lang=lang, slow=False)
         audio.save(filename)
 
-        # connect to vc und play audio
-        vc = context.message.author.voice.channel
+        # connect to vc und play audio           
+        vc = author.voice.channel
         currentvc = await vc.connect()
-        currentvc.play(discord.FFmpegPCMAudio(filename, options="-loglevel panic"))
+        currentvc.play(discord.FFmpegPCMAudio(filename))
         while currentvc.is_playing():
             await asyncio.sleep(1)
         # disconnect after the player has finished
