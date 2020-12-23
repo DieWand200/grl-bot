@@ -75,10 +75,10 @@ async def insult(ctx, name):
 # insults a grl member in voice chat
 @bot.command(name='insultvc', help='Insult a grl member in voice chat')
 async def insultvc(context, name):
+    insults = open('insults.txt').read().splitlines()
     author = context.message.author 
     if author.voice is not None:
-        # text to speech and save as mp3
-        insults = open('insults.txt').read().splitlines()
+        # text to speech and save as mp3 
         audio = gTTS(text=f'{name.replace("@", "")} you {random.choice(insults)}', lang='en', slow=False)
         filename = 'insult-' + str(time.time()) + '.mp3'
         audio.save(filename)
