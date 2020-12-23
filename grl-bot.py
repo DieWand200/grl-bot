@@ -107,6 +107,6 @@ async def insultvc(context, name):
     else:
         await context.send(f'Please connect to a voice channel first. You {insult}')
 
-f = open('token.txt', 'r')
+f = open('/root/token.txt', 'r')
 token = f.read()
 bot.run(token)
