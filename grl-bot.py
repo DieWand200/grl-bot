@@ -14,10 +14,8 @@ import time
 
 # weird new Intents
 # not sure if they are all necessary
+#probably should only add the ones that we need
 intents = discord.Intents().all()
-#intents.members = True
-#intents.guilds = True
-#intents.messages = True
 
 bot = commands.Bot(command_prefix='.', intents=intents)
 
@@ -74,38 +72,28 @@ async def insult(ctx, name):
     insults = open('insults.txt').read().splitlines()
     await ctx.send(f'{name} you {random.choice(insults)}')
 
-async def join(ctx):
-   destination = ctx.message.author.voice.channel
-   if ctx.me.voice is not None:
-     await ctx.me.voice.move_to(destination)
-     return
-
-   ctx.me.voice = await destination.connect(timeout = 5)
-   await ctx.send(f"Joined {destination} Voice Channel")
-
 # insults a grl member in voice chat
-# noinspection SpellCheckingInspection
 @bot.command(name='insultvc', help='Insult a grl member in voice chat')
 async def insultvc(context, name):
-    voice_channel = context.message.author.voice.channel
-    if voice_channel is not None:
-        # text to speech and save as mp3
-        insults = open('insults.txt').read().splitlines()
+    insults = open('insults.txt').read().splitlines()
+    author = context.message.author 
+    if author.voice is not None:
+        # text to speech and save as mp3 
         audio = gTTS(text=f'{name.replace("@", "")} you {random.choice(insults)}', lang='en', slow=False)
         filename = 'insult-' + str(time.time()) + '.mp3'
         audio.save(filename)
 
-        # connect to vc und play audio
-        vc = context.message.author.voice.channel
+        # connect to vc und play audio           
+        vc = author.voice.channel
         currentvc = await vc.connect()
-        currentvc.play(discord.FFmpegPCMAudio(filename))#, options="-loglevel panic"))
+        currentvc.play(discord.FFmpegPCMAudio(filename))
         while currentvc.is_playing():
             await asyncio.sleep(1)
         # disconnect after the player has finished
         await currentvc.disconnect()
         os.remove(filename)
     else:
-        await context.send(f'Please connect to a voice channel first. You {insult}')
+        await context.send(f'Please connect to a voice channel first. You {random.choice(insults)}')
 
 f = open('/root/token.txt', 'r')
 token = f.read()
