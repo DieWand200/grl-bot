@@ -93,7 +93,7 @@ async def insultvc(context, name):
         await currentvc.disconnect()
         os.remove(filename)
     else:
-        await context.send(f'Please connect to a voice channel first. You {insult}')
+        await context.send(f'Please connect to a voice channel first. You {random.choice(insults)}')
 
 f = open('/root/token.txt', 'r')
 token = f.read()
